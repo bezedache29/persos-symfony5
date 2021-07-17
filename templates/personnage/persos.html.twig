@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnages{% endblock %}
+
+{% block monTitre %}Liste des personnages{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr class="thead-dark">
+                <th scope="col">Image</th>
+                <th scope="col">Pseudo</th>
+                <th scope="col">Age</th>
+                <th scope="col">Sexe</th>
+                <th scope="col">Force</th>
+                <th scope="col">Agilité</th>
+                <th scope="col">Intelligence</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for perso in persos %}
+                <tr>
+                    <td><img src="{{ asset('images/personnages/' ~ perso.pseudo ~ '.png') }}" alt=""></td>
+                    <td><a href="{{ path('afficher_perso', {pseudo: perso.pseudo}) }}">{{ perso.pseudo }}</a></td>
+                    <td>{{ perso.age }}</td>
+                    <td>{{ perso.sexe ? 'Homme' : 'Femme' }}</td>
+                    <td>{{ perso.data.force }}</td>
+                    <td>{{ perso.data.agi }}</td>
+                    <td>{{ perso.data.intel }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
